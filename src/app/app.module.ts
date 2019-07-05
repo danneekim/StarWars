@@ -2,10 +2,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
+import { LukeSkyWalkerComponent } from './lukeskywalker/luke-skywalker.component'
+
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LukeSkyWalkerComponent
   ],
   imports: [
     BrowserModule
