@@ -1,19 +1,20 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import {HttpClientModule} from '@angular/common/http';
 
 import { AppComponent } from './app.component';
-import { LukeSkyWalkerComponent } from './lukeskywalker/luke-skywalker.component'
+import { CharacterService } from './services/character.service';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    LukeSkyWalkerComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [ CharacterService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
