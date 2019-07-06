@@ -1,18 +1,21 @@
-<div class="container">
+<h1 class="callout primary text-center">Star Wars App</h1>
+<div class="grid-container">
+  <div class="grid-x grid-padding-x callout warning">
 
-<ul *ngIf="charactersJSON$">
-  <li *ngFor="let character of charactersJSON$.characters">
-    <a (click)="getCharacterInfo(character.url)">{{character.name}}</a>
-  </li>
-</ul>
+    <div class="cell small-6 callout secondary text-center">
+      <ul *ngIf="charactersJSON$" style="list-style: none;">
+        <li *ngFor="let character of charactersJSON$.characters">
+          <a (click)="getCharacterInfo(character.url)">{{character.name}}</a>
+        </li>
+      </ul>
+    </div>
 
-
-<div *ngIf="characterInfo$">
-  <ul>
-    <li *ngFor="let film of films">
-      {{film.title}}
-    </li>
-  </ul>
-</div>
-
+    <div class="cell small-6 callout secondary">
+        <ul *ngIf="characterInfo$ && filmsLoaded === true">
+          <li *ngFor="let film of films">
+            {{film.title}}
+          </li>
+        </ul>
+    </div>
+  </div>
 </div>
