@@ -11,11 +11,13 @@
     </div>
 
     <div class="cell small-6 callout secondary">
-        <ul *ngIf="characterInfo$ && filmsLoaded === true">
+        <ul *ngIf="characterInfo$">
           <li *ngFor="let film of films">
-            {{film.title}}
+            Title: {{film.title}} <br>
+            Release Date: {{film.release_date | date : 'fullDate'}}
           </li>
         </ul>
     </div>
   </div>
 </div>
+
