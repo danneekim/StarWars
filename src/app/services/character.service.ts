@@ -6,6 +6,7 @@ import { catchError } from 'rxjs/operators';
 
 @Injectable()
 export class CharacterService {
+    peopleURL = 'https://swapi.co/api/people/';
     apiUrl = '/assets/data/characters.json';
 
     constructor(private http: HttpClient) { }
@@ -26,5 +27,12 @@ export class CharacterService {
             )
     }
     
+    getObiWanKenobi(): Observable<any> {
+        return this.http.get(this.peopleURL)
+        .pipe(
+            map((res: any) => res),
+            catchError((err:any) => throwError(err))
+        )
+    }
 
 }

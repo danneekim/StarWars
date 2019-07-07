@@ -40,8 +40,20 @@ export class AppComponent {
     var temp = [];
     console.log(url);
 
-    if (name === 'Obi-Wan Kenobi') {
+    if (name === 'Obi-wan Kenobi') {
       //make API call to people API to get the list of films for Obi-Wan Kenobi
+      this.characterService.getObiWanKenobi().subscribe(
+        async data => {
+          let obiWanObject = data.results.find(obj => obj.name === 'Obi-Wan Kenobi');
+          const start = async () => {
+            await this.asyncForEach(obiWanObject.films, async (film) => {
+              temp.push(await this.getMovies(film));
+            });
+          }
+          await start();
+          this.films = temp;
+        }
+      )
     }
     else {  
       this.characterService.getUrl(url).subscribe(
