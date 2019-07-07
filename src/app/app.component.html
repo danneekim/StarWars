@@ -5,14 +5,14 @@
     <div class="cell small-6 callout secondary text-center">
       <ul *ngIf="charactersJSON$" style="list-style: none;">
         <li *ngFor="let character of charactersJSON$.characters">
-          <a (click)="getCharacterInfo(character.url)">{{character.name}}</a>
+          <a (click)="getCharacterInfo(character.url, character.name)">{{character.name}}</a>
         </li>
       </ul>
     </div>
 
     <div class="cell small-6 callout secondary">
         <ul *ngIf="characterInfo$">
-          <li *ngFor="let film of films">
+          <li *ngFor="let film of films;">
             Title: {{film.title}} <br>
             Release Date: {{film.release_date | date : 'fullDate'}}
           </li>
