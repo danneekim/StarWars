@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { map } from 'rxjs/operators';
-// import { catch} from 'rxjs/operators';
+import { catchError } from 'rxjs/operators';
 
 @Injectable()
 export class CharacterService {
@@ -14,29 +14,17 @@ export class CharacterService {
         return this.http.get("./assets/data/characters.json")
             .pipe(
                 map((res: any) => res),
-                // catch((error:any) => console.log(error))
+                catchError((err:any) => throwError(err))
             )
-
-
     }
 
-    getUrl(url): Observable<any> {
+    getUrl(url): Observable<any[]> {
         return this.http.get(url)
             .pipe(
                 map((res: any) => res),
-                // catch((error:any) => console.log(error))
-
+                catchError((err:any) => throwError(err))
             )
     }
-
-    // getCharacters(): Observable<any> {
-    //     return this.http.get(this.apiUrl)
-    //         // .pipe(
-    //         //     map((data: any) => {
-    //         //         return data.result
-    //         //     })
-    //         // );
-    // }
-
+    
 
 }

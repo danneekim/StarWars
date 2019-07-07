@@ -11,9 +11,8 @@ export class AppComponent {
   title = 'StarWarsApp';
   charactersJSON$ = {};
   characterInfo$;
-  films = [];
-  
-
+  films = <any>[];
+  filmsLoaded: boolean = false;
 
   constructor( private characterService: CharacterService ){}
 
@@ -27,8 +26,6 @@ export class AppComponent {
         this.charactersJSON$=data;
         console.log(this.charactersJSON$);
       }
-      // error => console.log(error));
-
   )}
 
 
@@ -38,18 +35,26 @@ export class AppComponent {
       (data) => {
         this.characterInfo$ = data;
         console.log(this.characterInfo$)
-        this.characterInfo$.films.forEach(film => {
+        this.characterInfo$.films.forEach(filmUrl => {
           // console.log(film)
-          this.characterService.getUrl(film).subscribe(
-            (data) => {
-              // console.log(data);
-              this.films.push(data);
-              console.log(this.films)
-            }
-          )
+          this.getMovies(filmUrl);
         });
       }
     )
+  }
+
+  getMovies(url){
+    this.films = [];
+    this.characterService.getUrl(url).subscribe(
+      (data) => {
+        this.films.push(data);
+      },
+      (error) => {
+        console.log(error)
+      },
+      () => {
+        console.log(this.films)
+      })
   }
 
 }
