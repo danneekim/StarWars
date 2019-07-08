@@ -12,26 +12,25 @@ body {
 }
 
 .openingCrawl {
-    height: 5rem;	
+    height: 4rem;	
     overflow: hidden;
     position: relative;
     background-color: black;
    }
    .openingCrawl p{
-    font-size: 1.5em;
+    font-size: .8rem;
     color: white;
     position: absolute;
     height: 100%;
-    margin: 0;
-    line-height: 50px;
+    line-height: 20px;
     /* Starting position */
     -moz-transform:translateY(100%);
     -webkit-transform:translateY(100%);	
     transform:translateY(100%);
     /* Apply animation to this element */	
-    -moz-animation: scroll 10s linear infinite;
-    -webkit-animation: scroll 10s linear infinite;
-    animation: scroll 10s linear infinite;
+    -moz-animation: scroll 20s linear infinite;
+    -webkit-animation: scroll 20s linear infinite;
+    animation: scroll 20s linear infinite;
    }
    /* Move it (define the animation) */
    @-moz-keyframes scroll {
