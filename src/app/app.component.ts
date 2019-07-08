@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { CharacterService } from './services/character.service';
 
-
+console.log('app.component');
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',

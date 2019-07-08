@@ -4,7 +4,7 @@ import {HttpClientModule} from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { CharacterService } from './services/character.service';
-
+console.log('app.module');
 
 @NgModule({
   declarations: [
