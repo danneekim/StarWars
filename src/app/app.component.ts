@@ -12,10 +12,13 @@ export class AppComponent {
   charactersJSON$ = {};
   characterInfo$;
   films = <any>[];
-  filmsLoaded: boolean = false;
 
   constructor(private characterService: CharacterService) { }
 
+  /**
+   * On initializing page get character data
+   * from character.json
+   */
   ngOnInit() {
     this.getCharacters();
   }
@@ -24,7 +27,6 @@ export class AppComponent {
     this.characterService.getCharacterDetails().subscribe(
       (data) => {
         this.charactersJSON$ = data;
-        console.log(this.charactersJSON$);
       }
     )
   }
@@ -35,10 +37,16 @@ export class AppComponent {
     }
   }
 
+  /**
+   * GET character data to access films
+   * GET each film data and load into array
+   * SET loaded films to variable to display
+   * @param url  = url from character.json
+   * @param name = name from character.json
+   */
   getCharacterInfo(url, name) {
     this.films = [];
-    var temp = [];
-    console.log(url);
+    let loadingFilms = [];
 
     if (url === "https://swapi.co/api/people/unknown/") {
       //make API call to people API to get the list of films for Obi-Wan Kenobi
@@ -47,11 +55,11 @@ export class AppComponent {
           let obiWanObject = data.results.find(obj => obj.name === 'Obi-Wan Kenobi');
           const start = async () => {
             await this.asyncForEach(obiWanObject.films, async (film) => {
-              temp.push(await this.getMovies(film));
+              loadingFilms.push(await this.getMovies(film));
             });
           }
           await start();
-          this.films = temp;
+          this.films = loadingFilms;
         }
       )
     }
@@ -62,11 +70,11 @@ export class AppComponent {
  
          const start = async () => {
            await this.asyncForEach(this.characterInfo$.films, async (film) => {
-             temp.push(await this.getMovies(film));
+             loadingFilms.push(await this.getMovies(film));
            });
          }
          await start();
-         this.films = temp;
+         this.films = loadingFilms;
        }
      )
     }
@@ -74,7 +82,6 @@ export class AppComponent {
 
   getMovies(url) {
     return new Promise(resolve => {
-      let films = {};
       this.characterService.getUrl(url).subscribe(
         (data) => {
           resolve(data);
