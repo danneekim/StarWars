@@ -26,18 +26,20 @@
 
 
       <div class="cell callout secondary" *ngIf="characterInfo$">
-        <div class="callout primary " *ngFor="let film of films;">
+        <div class="callout primary" *ngFor="let film of films;">
           <h4 class="text-center"><strong><i>{{film.title}}</i></strong></h4>
+          <div class="cell small-6 callout secondary openingCrawl">
+              <p>{{film.opening_crawl}}</p>
+            </div>
           <div class="grid-x grid-margin-x callout warning">
-            <h6 class="cell small-6 float-left"><strong>Star Wars Episode Number: </strong><span><i>{{film.episode_id}}</i></span></h6>
-            <h6 class="cell small-6 float-left"><strong>Release Date: </strong><span><i>{{film.release_date | date : 'fullDate'}}</i></span></h6>
-            <h6 class="cell small-6 float-left"><strong>Director: </strong><span><i>{{film.director}}</i></span></h6>
-            <h6 class="cell small-6 float-left"><strong>Producers: </strong><span><i>{{film.producer}}</i></span></h6>
+            <h6 class="cell small-6 float-left"><strong>Star Wars Episode Number:</strong>&nbsp;<span><i>{{film.episode_id}}</i></span></h6>
+            <h6 class="cell small-6 float-left"><strong>Release Date:</strong>&nbsp;<span><i>{{film.release_date | date : 'fullDate'}}</i></span></h6>
+            <h6 class="cell small-6 float-left"><strong>Director:</strong>&nbsp;<span><i>{{film.director}}</i></span></h6>
+            <h6 class="cell small-6 float-left"><strong>Producers:</strong>&nbsp;<span><i>{{film.producer}}</i></span></h6>
           </div>
-          <div class="cell">
-            <p>{{film.opening_crawl}}</p>
-          </div>
+
         </div>
+
       </div>
 
 
