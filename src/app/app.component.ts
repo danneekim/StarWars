@@ -12,7 +12,6 @@ export class AppComponent {
   charactersJSON$ = {};
   characterInfo$;
   films = <any>[];
-  filmsLoaded: boolean = false;
 
   constructor(private characterService: CharacterService) { }
 
@@ -67,6 +66,7 @@ export class AppComponent {
          }
          await start();
          this.films = temp;
+         console.log(temp);
        }
      )
     }
@@ -86,4 +86,7 @@ export class AppComponent {
         })
     })
   }
+
+  
 }
+

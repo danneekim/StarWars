@@ -1,23 +1,52 @@
-<h1 class="callout primary text-center">Star Wars App</h1>
-<div class="grid-container">
-  <div class="grid-x grid-padding-x callout warning">
+<!DOCTYPE html>
+<html lang="en">
 
-    <div class="cell small-6 callout secondary text-center">
-      <ul *ngIf="charactersJSON$" style="list-style: none;">
-        <li *ngFor="let character of charactersJSON$.characters">
-          <a (click)="getCharacterInfo(character.url, character.name)">{{character.name}}</a>
-        </li>
-      </ul>
-    </div>
+<head>
+  <link href="https://fonts.googleapis.com/css?family=Oswald&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Star Wars App</title>
 
-    <div class="cell small-6 callout secondary">
-        <ul *ngIf="characterInfo$">
-          <li *ngFor="let film of films;">
-            Title: {{film.title}} <br>
-            Release Date: {{film.release_date | date : 'fullDate'}}
+</head>
+
+<body>
+  <div class="grid-container">
+    <div class="grid-x grid-padding-x callout secondary">
+      <h1 class="cell small-12 callout primary text-center">Star Wars</h1>
+      <div class="cell small-12">
+        <ul class="callout secondary grid-x grid-padding-x characterButtons" *ngIf="charactersJSON$"
+          style="border: 1px solid black;">
+          <li class="cell small-3 align-self-middle" *ngFor="let character of charactersJSON$.characters">
+            <button class="button primary" (click)="getCharacterInfo(character.url, character.name)"
+              title="{{character.name}}">{{character.name}}</button>
           </li>
         </ul>
-    </div>
-  </div>
-</div>
+      </div>
 
+
+      <div class="cell callout secondary" *ngIf="characterInfo$">
+        <div class="callout primary " *ngFor="let film of films;">
+          <h4 class="text-center"><strong><i>{{film.title}}</i></strong></h4>
+          <div class="grid-x grid-margin-x callout warning">
+            <h6 class="cell small-6 float-left"><strong>Star Wars Episode Number: </strong><span><i>{{film.episode_id}}</i></span></h6>
+            <h6 class="cell small-6 float-left"><strong>Release Date: </strong><span><i>{{film.release_date | date : 'fullDate'}}</i></span></h6>
+            <h6 class="cell small-6 float-left"><strong>Director: </strong><span><i>{{film.director}}</i></span></h6>
+            <h6 class="cell small-6 float-left"><strong>Producers: </strong><span><i>{{film.producer}}</i></span></h6>
+          </div>
+          <div class="cell">
+            <p>{{film.opening_crawl}}</p>
+          </div>
+        </div>
+      </div>
+
+
+
+    </div>
+
+  </div>
+
+
+</body>
+
+</html>
