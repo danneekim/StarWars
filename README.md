@@ -2,8 +2,8 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.0.6.
 
-## Deployed Site:
-[StarWarAPI](https://calm-plateau-27476.herokuapp.com/)
+## Deployed Site: [StarWarAPI](https://calm-plateau-27476.herokuapp.com/)
+
 
 ## Development server
 
