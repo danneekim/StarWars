@@ -47,37 +47,20 @@ export class AppComponent {
   getCharacterInfo(url, name) {
     this.films = [];
     let loadingFilms = [];
+    this.characterService.getUrl(url).subscribe(
+      async data => {
+        this.characterInfo$ = data;
 
-    if (url === "https://swapi.co/api/people/unknown/") {
-      //make API call to people API to get the list of films for Obi-Wan Kenobi
-      this.characterService.getObiWanKenobi().subscribe(
-        async data => {
-          let obiWanObject = data.results.find(obj => obj.name === 'Obi-Wan Kenobi');
-          const start = async () => {
-            await this.asyncForEach(obiWanObject.films, async (film) => {
-              loadingFilms.push(await this.getMovies(film));
-            });
-          }
-          await start();
-          this.films = loadingFilms;
+        const start = async () => {
+          await this.asyncForEach(this.characterInfo$.films, async (film) => {
+            loadingFilms.push(await this.getMovies(film));
+          });
         }
-      )
-    }
-    else if (name !== 'Obi-wan Kenobi') {  
-      this.characterService.getUrl(url).subscribe(
-        async data => {
-         this.characterInfo$ = data;
- 
-         const start = async () => {
-           await this.asyncForEach(this.characterInfo$.films, async (film) => {
-             loadingFilms.push(await this.getMovies(film));
-           });
-         }
-         await start();
-         this.films = loadingFilms;
-       }
-     )
-    }
+        await start();
+        this.films = loadingFilms;
+      }
+    )
+
   }
 
   getMovies(url) {

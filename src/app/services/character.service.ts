@@ -15,7 +15,7 @@ export class CharacterService {
         return this.http.get("./assets/data/characters.json")
             .pipe(
                 map((res: any) => res),
-                catchError((err:any) => throwError(err))
+                catchError(this.handleError)
             )
     }
 
@@ -23,16 +23,29 @@ export class CharacterService {
         return this.http.get(url)
             .pipe(
                 map((res: any) => res),
-                catchError((err:any) => throwError(err))
+                catchError(this.handleError)
             )
     }
-    
+
     getObiWanKenobi(): Observable<any> {
         return this.http.get(this.peopleURL)
-        .pipe(
-            map((res: any) => res),
-            catchError((err:any) => throwError(err))
-        )
+            .pipe(
+                map((res: any) => res),
+                catchError(this.handleError)
+            )
+    }
+
+    handleError(error) {
+        let errorMessage = '';
+        if (error.error instanceof ErrorEvent) {
+            // client-side error
+            errorMessage = `Error: ${error.error.message}`;
+        } else {
+            // server-side error
+            errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+        }
+        window.alert(errorMessage);
+        return throwError(errorMessage);
     }
 
 }
